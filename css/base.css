@@ -1,0 +1,380 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 16px;
+	--color-text: #f3f3f3;
+	--color-bg: #0f0e0e;
+	--color-link: #f3f3f3;
+	--color-link-hover: #e35384;
+	--page-padding: 2rem 3rem;
+}
+
+@font-face {
+	font-family: 'blackoutregular';
+	src: url('../fonts/blackout-webfont.woff2') format('woff2'),
+	     url('../fonts/blackout-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'hacked_crtregular';
+    src: url('../fonts/hacked_crt-webfont.woff2') format('woff2'),
+         url('../fonts/hacked_crt-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'h19a_lunaluna';
+    src: url('../fonts/h19a-luna-webfont.woff2') format('woff2'),
+         url('../fonts/h19a-luna-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'capsule3regular';
+    src: url('../fonts/capsule3-webfont.woff2') format('woff2'),
+         url('../fonts/capsule3-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	margin: 0;
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	font-family: "oculi-display", serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Page Loader */
+.js .loading::before,
+.js .loading::after {
+	content: '';
+	position: fixed;
+	z-index: 5000;
+}
+
+.js .loading::before {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--color-bg);
+}
+
+.js .loading::after {
+	top: 50%;
+	left: 50%;
+	width: 60px;
+	height: 60px;
+	margin: -30px 0 0 -30px;
+	border-radius: 50%;
+	opacity: 0.4;
+	background: var(--color-link);
+	animation: loaderAnim 0.7s linear infinite alternate forwards;
+
+}
+
+@keyframes loaderAnim {
+	to {
+		opacity: 1;
+		transform: scale3d(0.5,0.5,1);
+	}
+}
+
+a {
+	text-decoration: none;
+	color: var(--color-link);
+	outline: none;
+	cursor: pointer;
+}
+
+a:hover {
+	color: var(--color-link-hover);
+	outline: none;
+}
+
+a:focus {
+	outline: none;
+}
+
+a:focus-visible {
+	outline: 2px solid red;
+}
+
+.unbutton {
+	background: none;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	font: inherit;
+	cursor: pointer;
+}
+
+.unbutton:focus {
+	outline: none;
+}
+
+.frame {
+	padding: var(--page-padding);
+	position: relative;
+	display: grid;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	grid-row-gap: 1rem;
+	grid-column-gap: 2rem;
+	pointer-events: none;
+	justify-items: start;
+	grid-template-columns: auto auto auto 1fr;
+	align-items: start;
+	justify-content: start;
+	grid-template-areas: 'prev back sub sponsor' 'title title title title';
+}
+
+.frame #cdawrap {
+  justify-self: start;
+}
+
+.frame a {
+  pointer-events: auto;
+}
+
+.frame__title {
+  grid-area: title;
+  font-size: clamp(2rem,10vw,4rem);
+  font-weight: 100;
+  line-height: 1;
+  margin: 2rem 0 0 0;
+}
+
+.frame__back {
+  grid-area: back;
+  justify-self: start;
+}
+
+.frame__prev {
+  grid-area: prev;
+  justify-self: start;
+}
+
+.frame__sub {
+  grid-area: sub;
+}
+
+.frame__demos {
+	grid-area: demos;
+	display: flex;
+	gap: 1rem;
+}
+
+.content {
+	min-height: 60vh;
+	margin: 15vh auto;
+	display: grid;
+	place-items: center;
+}
+
+.content--flex {
+	display: flex;
+	justify-content: center;
+}
+
+.content--more {
+	margin-top: 40vh;
+}
+
+.content--text {
+	place-items: initial;
+	align-content: center;
+	max-width: 950px;
+	padding: 0 10vw;
+	margin: 0 0 0 auto;
+}
+
+.content > h4 {
+	background-color: #f3ec78;
+	background-image: linear-gradient(172deg, #e35384, #e8a53c);
+	background-size: 100%;
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	-webkit-text-fill-color: transparent; 
+	-moz-text-fill-color: transparent;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+}
+
+.content > p {
+	font-weight: 300;
+	font-size: clamp(1.5rem,5vw,2.25rem);
+	line-height: 1.25;
+}
+
+.content__title {
+	font-size: 2rem;
+	font-weight: normal;
+}
+
+.poster {
+	width: 100%;
+	height: 100vh;
+	display: grid;
+	place-items: center;
+	--offset-x: 0%;
+	--offset-y: 0%;
+}
+
+.poster--half {
+	height: 28vw;
+}
+
+.poster__inner {
+	width: calc(100% + var(--offset-x) * 2);
+	height: calc(100% + var(--offset-y) * 2);
+	background-size: cover;
+	background-position: 50% 50%;
+}
+
+.poster__inner video {
+	width: 100%;
+	height: 100%;
+	object-fit: fill;
+}
+
+.poster__inner--fixed {
+	background-attachment: fixed;
+}
+
+.font-1 {
+	font-family: "blackoutregular";
+	font-weight: 400;
+}
+
+.font-2 {
+	font-family: "hacked_crtregular", sans-serif;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+.font-3 {
+	font-family: "macula-solid", sans-serif;
+	font-weight: 500;
+}
+
+.font-4 {
+	font-family: "macula-line", sans-serif;
+	font-weight: 400;
+}
+
+.font-5 {
+	font-family: "octothorpe-pe", sans-serif;
+	font-weight: 400;
+}
+
+.font-6 {
+	font-family: "h19a_lunaluna", sans-serif;
+	font-weight: 400;
+}
+
+.font-7 {
+	font-family: "capsule3regular", sans-serif;
+	font-weight: 400;
+}
+
+.font-8 {
+	font-family: "flegrei", sans-serif;
+	font-weight: 400;
+}
+
+.font-9 {
+	font-family: gigantic, sans-serif;
+	font-weight: 900;
+	text-transform: uppercase;
+}
+
+.size-1 {
+	font-size: 70vw;
+}
+
+.size-2 {
+	font-size: 50vw;
+}
+
+.size-3 {
+	font-size: 30vw;
+}
+
+.size-4 {
+	font-size: 20vh;
+}
+
+svg {
+	opacity: 0;
+	position: absolute;
+	pointer-events: none;
+	width: 100%;
+	height: 100vh;
+	overflow: visible;
+}
+
+.h-200 {
+	height: 200vh;
+}
+
+.w-25 {
+	width: 50vw;
+}
+
+svg text {
+	line-height: 1;
+}
+
+.credits {
+	font-size: 2rem;
+	text-align: center;
+	margin: 50vh auto;
+}
+
+.card-wrap {
+	margin-top: 5vh;
+	display: grid;
+	grid-gap: 2rem;
+	grid-auto-flow: row;
+	grid-template-columns: 250px;
+}
+
+.card__image {
+	display: block;
+	border-radius: 7px;
+	background-size: cover;
+	background-position: 50% 50%;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 4 / 3;
+}
+
+.card__title {
+	font-weight: normal;
+	font-size: 1rem;
+}
+
+@media screen and (min-width: 53em) {
+		.card-wrap {
+			grid-template-columns: repeat(3,250px);
+		}
+		.w-25 {
+			width: 25vw;
+		}
+}	
