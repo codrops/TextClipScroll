@@ -139,10 +139,10 @@ a:focus-visible {
 	grid-column-gap: 2rem;
 	pointer-events: none;
 	justify-items: start;
-	grid-template-columns: auto auto auto 1fr;
+	grid-template-columns: 100%;
 	align-items: start;
 	justify-content: start;
-	grid-template-areas: 'prev back sub sponsor' 'title title title title';
+	grid-template-areas: 'title' 'prev' 'back' 'sub' 'sponsor';
 }
 
 .frame #cdawrap {
@@ -371,6 +371,13 @@ svg text {
 }
 
 @media screen and (min-width: 53em) {
+		.frame {
+			grid-template-columns: auto auto auto 1fr;
+			grid-template-areas: 'prev back sub sponsor' 'title title title title';
+		}
+		.frame #cdawrap {
+		  justify-self: end;
+		}
 		.card-wrap {
 			grid-template-columns: repeat(3,250px);
 		}
